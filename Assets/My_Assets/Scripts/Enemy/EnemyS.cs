@@ -16,6 +16,5 @@ public class EnemyS : MonoBehaviour
     void Update()
     {
         transform.Translate(Sdirection * enemySSpeed * Time.deltaTime);
-        Destroy(gameObject ,3);
     }
 }

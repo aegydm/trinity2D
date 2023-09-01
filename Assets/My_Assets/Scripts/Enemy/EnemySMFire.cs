@@ -14,7 +14,6 @@ public class EnemySMFire : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;
