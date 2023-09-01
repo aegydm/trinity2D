@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2662662223178160203}
   - component: {fileID: 1626555236963060886}
   - component: {fileID: 6831307831805837900}
-  - component: {fileID: 501119147145124477}
-  - component: {fileID: 721271340384167473}
+  - component: {fileID: 1596747103273146508}
+  - component: {fileID: 6777862149299272065}
   m_Layer: 0
   m_Name: EnemyS
   m_TagString: Untagged
@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.24, y: 0.04, z: 0}
-  m_LocalScale: {x: 0.34, y: 0.34, z: 0.34}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 3.6241179, y: 10.019783, z: 3.7417793}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2458822037830587199}
   m_Father: {fileID: 0}
@@ -108,7 +108,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &501119147145124477
+--- !u!114 &1596747103273146508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,27 +117,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 4474724090005342117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23750d656d280174aabc60bb4f7625c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c67aaa3a9f8a704bb304ded7b0f7a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySSpeed: 7
-  enemySHP: 1
---- !u!114 &721271340384167473
-MonoBehaviour:
+  speed: 5
+  dir: {x: -1, y: 0, z: 0}
+  patternIndex: 0
+  curPatternCount: 0
+  maxPatternCount: 
+--- !u!54 &6777862149299272065
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4474724090005342117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63fa7f8556cce414fa476efbd9cb570c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySMBullet: {fileID: 7411445565572699555, guid: 68bdf447a6748564ebd02ae2c043f3be,
-    type: 3}
-  gun: {fileID: 7109724368894150053}
-  fireRate: 3
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7109724368894150053
 GameObject:
   m_ObjectHideFlags: 0
