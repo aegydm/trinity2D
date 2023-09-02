@@ -6,6 +6,7 @@ public class EnemySMBullet : MonoBehaviour
 {
     public float enemySMBulletSpeed = 14;
     public float enemySMBulletDMG = 0;
+    public float enemySMBulletDestroy = 5;
 
     Vector3 enemySMBulletDir;
     void Start()
@@ -16,6 +17,6 @@ public class EnemySMBullet : MonoBehaviour
     void Update()
     {
         transform.Translate(enemySMBulletDir * enemySMBulletSpeed * Time.deltaTime);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, enemySMBulletDestroy);
     }
 }
