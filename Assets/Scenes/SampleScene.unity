@@ -152,8 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1299bdde5d6b152479663a27824e1146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyListLength: 20
-  enemyS: {fileID: 4474724090005342117, guid: f15ec230b59094543aaee1590d666f59, type: 3}
+  enemySListLength: 20
+  enemyMListLength: 10
+  enemyLListLength: 5
+  enemyS: {fileID: 9125498205815684883, guid: b4269408e8362344e9fbd4c599c47088, type: 3}
   enemyM: {fileID: 904522272180633833, guid: d26e3e9c2dac9e44a989a1bd1f113cd0, type: 3}
   enemyL: {fileID: 0}
 --- !u!4 &75347443
