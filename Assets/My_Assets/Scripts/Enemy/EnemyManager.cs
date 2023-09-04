@@ -13,31 +13,29 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject enemyL; //_enemyL
     List<GameObject> enemySList = new List<GameObject>();
     List<GameObject> enemyMList = new List<GameObject>();
-    List<GameObject> enemyLList = new List<GameObject>();
+    List<GameObject> enemyLList = new List<GameObject>(); // 풀링용 리스트
+    [SerializeField] private GameObject[] spawnPoints;    // 스폰 포인트 배열
 
-    List<EnemySpawn> enemySpawnList = new List<EnemySpawn>();
+    List<EnemySpawn> enemySpawnList = new List<EnemySpawn>();  // 텍스트파일 읽어온 정보 저장용 리스트
 
-    [SerializeField] private GameObject[] spawnPoints;
+    EnemySpawn enemySpawnData;
 
-    private int spawnCount = 0;
-    private bool spawnEnd = false;
-    private float currentTime;
-    private float nextSpawnDelay;
-
+    private bool spawnEnd = true;
+    
     private void Start()
     { 
         PullingEnemyS();
         PullingEnemyM();
         PullingEnemyL();
 
+        ReadSpawnFile();
+
+        SpawnEnemy();
     }
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
 
-        ReadSpawnFile();
-        SpawnEnemy();
     }
 
     private void PullingEnemyS()
@@ -50,6 +48,8 @@ public class EnemyManager : MonoBehaviour
             _enemyS.SetActive(false);
 
             _enemyS.transform.parent = transform;
+
+            Debug.Log("풀링 완료");
         }
     }
 
@@ -85,6 +85,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (!enemy.activeSelf)
             {
+                Debug.Log("풀링 활성화");
                 return enemy;
             }
         }
@@ -102,69 +103,58 @@ public class EnemyManager : MonoBehaviour
 
             if (line == null)
                 break;
-        
-            EnemySpawn enemySpawnData = new EnemySpawn();
 
-            enemySpawnData.spawnTime = float.Parse(line.Split(',')[0]); //스폰 시간 float
-            enemySpawnData.enemyType = line.Split(',')[1];              //적 유형 string
-            enemySpawnData.spawnPoint = int.Parse(line.Split(',')[2]);  //스폰포인트 int
+            EnemySpawn es = new EnemySpawn();
+
+            es.spawnTime = float.Parse(line.Split(',')[0]); //스폰 시간 float
+            es.enemyType = line.Split(',')[1];              //적 유형 string
+            es.spawnPoint = int.Parse(line.Split(',')[2]);  //스폰포인트 int
+
+            Debug.Log("시간" + es.spawnTime);
+            Debug.Log("유형" + es.enemyType);
+            Debug.Log("위치" + es.spawnPoint);
 
             enemySpawnList.Add(enemySpawnData);
-
-            if (currentTime > enemySpawnData.spawnTime)
-            {
-                if (spawnCount >= enemySpawnList.Count)
-                {
-                    spawnEnd = true;
-                    return;
-                }
-
-                EnemySpawn spawnData = enemySpawnList[spawnCount];
-
-                GameObject enemyToSpawn = null;
-
-                switch (spawnData.enemyType)
-                {
-                    case "S":
-                        enemyToSpawn = GetInactiveEnemy(enemySList);
-                        break;
-                    case "M":
-                        enemyToSpawn = GetInactiveEnemy(enemyMList);
-                        break;
-                    case "L":
-                        enemyToSpawn = GetInactiveEnemy(enemyLList);
-                        break;
-                }
-
-                if (enemyToSpawn != null)
-                {
-                    GameObject spawnPoint = spawnPoints[spawnData.spawnPoint - 1];
-                    enemyToSpawn.transform.position = spawnPoint.transform.position;
-                    enemyToSpawn.SetActive(true);
-                }
-
-                spawnCount++;
-
-                if (spawnCount < enemySpawnList.Count)
-                {
-                    nextSpawnDelay = enemySpawnList[spawnCount].spawnTime;
-                }
-                else
-                {
-                    spawnEnd = true;
-                }
-            }
+            Debug.Log(enemySpawnData);
         }
         stringReader.Close();
-
     }
 
     private void SpawnEnemy()
     {
-        
+        GameObject enemyToSpawn = null;
+        while (spawnEnd)
+        {
+            Debug.Log(spawnEnd); //11번 돈다
+            switch (enemySpawnData.enemyType)
+            {
+                case "S":
+                    enemyToSpawn = GetInactiveEnemy(enemySList); //10번 활성화 txt파일은 8줄
+                    Debug.Log("S 소환");
+                    break;
+                case "M":
+                    enemyToSpawn = GetInactiveEnemy(enemyMList);
+                    Debug.Log("M 소환");
+                    break;
+                case "L":
+                    enemyToSpawn = GetInactiveEnemy(enemyLList);
+                    Debug.Log("L 소환");
+                    break;
+            }
+            if (enemyToSpawn != null)
+            {
+                GameObject spawnPoint = spawnPoints[enemySpawnData.spawnPoint - 1];
+                enemyToSpawn.transform.position = spawnPoint.transform.position;
+                enemyToSpawn.SetActive(true);
+            }
+            else
+            {
+                spawnEnd = false;
+                Debug.Log(spawnEnd);
+            }
+        }
     }
+}  
 
-    
-}
 
 
