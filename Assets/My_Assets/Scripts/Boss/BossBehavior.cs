@@ -1,38 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class BossBehavior : MonoBehaviour
 {
-    public int speed = 5;
-    public Vector3 dir = Vector3.left;
     public int patternIndex;
     public int curPatternCount;
     public int[] maxPatternCount;
+    public GameObject bossbullet;
     void Start()
     {
- /*       StartCoroutine(BossEnter());
-        Debug.Log("보스 움직여");*/
         Debug.Log("보스 등장");
-        Invoke("Stop", 2);
-    }
-    
-  /*  IEnumerator BossEnter()
-    {
-        while (true)
-        {
-            transform.position += dir * speed * Time.deltaTime;
-            yield return new WaitForSeconds(2.0f);
-        };   
-
-    }*/
-    void Stop()
-    {
-        Debug.Log("보스 멈춰");
-        if (!gameObject.activeSelf)
-            return;
-        Invoke("Think", 2);
+        Invoke("Think", 3);
     }
     void Think()
     {
@@ -58,6 +39,9 @@ public class BossBehavior : MonoBehaviour
     void BossPattern1()
     {
         Debug.Log("보스패턴 1 사용");
+
+
+
         curPatternCount++;
         if (curPatternCount < maxPatternCount[patternIndex])
             Invoke("BossPattern1", 1.0f);
