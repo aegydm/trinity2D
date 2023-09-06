@@ -12,7 +12,22 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameManager;
+
     public GameState currentGameState = GameState.menu;
+
+    private void Awake()
+    {
+        if (gameManager == null)
+        {
+            gameManager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            return;
+        }
+    }
     void Start()
     {
         StartGame();

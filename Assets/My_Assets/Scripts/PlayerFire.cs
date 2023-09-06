@@ -10,7 +10,7 @@ public class PlayerFire : MonoBehaviour
     public float fireRate = 1.0f;
     private float fireRateDelay = 0f;
 
-    public int poolSize = 100;      //źâ
+    public int poolSize = 30;      //źâ
     public List<GameObject> PNBPool; 
 
     // Start is called before the first frame update
@@ -23,6 +23,7 @@ public class PlayerFire : MonoBehaviour
             GameObject PNBulletGO = Instantiate(PNBullet);
 
             PNBPool.Add(PNBulletGO);
+            PNBulletGO.transform.parent = transform;
             PNBulletGO.SetActive(false);
         }
     }
@@ -39,7 +40,7 @@ public class PlayerFire : MonoBehaviour
             else
             {
                 BulletNumber();
-                fireRateDelay = fireRate;
+                fireRateDelay = fireRate; 
             }
         }
 
@@ -76,6 +77,7 @@ public class PlayerFire : MonoBehaviour
             PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0, 0);
 
             PNBPool.Remove(PNBulletGO);
+
         }
     }
     void BulletNumber1()

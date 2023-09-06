@@ -18,6 +18,8 @@ public class EnemyManager : MonoBehaviour
 
     List<EnemySpawn> enemySpawnList = new List<EnemySpawn>();  // 텍스트파일 읽어온 정보 저장용 리스트
 
+    public GameObject enemyToSpawn;
+
     EnemySpawn enemySpawnData;
 
     private bool spawnEnd = true;
@@ -120,9 +122,8 @@ public class EnemyManager : MonoBehaviour
         stringReader.Close();
     }
 
-    private void SpawnEnemy()
+    public void SpawnEnemy()
     {
-        GameObject enemyToSpawn = null;
         while (spawnEnd)
         {
             Debug.Log(spawnEnd); //11번 돈다
