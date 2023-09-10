@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1578998937301397112}
@@ -152,7 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySSpeed: 3
+  enemySdecelerationSpeed: 2
   enemySHP: 1
+  player: {fileID: 0}
+  eSBLList: []
 --- !u!114 &6427966464225743532
 MonoBehaviour:
   m_ObjectHideFlags: 0

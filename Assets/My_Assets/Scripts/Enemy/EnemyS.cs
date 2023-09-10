@@ -10,33 +10,36 @@ public class EnemyS : MonoBehaviour
     private enum ESState
     {
         Rush,
-        StopAtk,
-        Back
+        CrossBLine,
+        StopNTarget,
+        TurningBack
     }
 
     ESState esstate;
 
     [SerializeField] private float enemySSpeed = 14.0f;
-    [SerializeField] private float enemySdecelerationSpeed = 2.0f;
-    [SerializeField] private int enemySHP = 1;
+    [SerializeField] private float enemySdeselSpeed = 14.0f;
+    [SerializeField] private float enemyFallBackRotate = 60.0f;
+     private int enemySHP = 1;
 
-    private Vector3 ESDir;
+    private Vector3 eSDir;
+    private Vector3 eSLookDir;
 
-    [SerializeField] Transform player; //유도탄 발사를 위한 플레이어 위치
-    [SerializeField] Transform[] eSBLList;//Enemy S Break Line 3개중 하나
+    [SerializeField] Transform player;
+    [SerializeField] Transform[] eSBLList;
+                     Transform eSBL;
 
-    Transform eSBL;
+    private float currentTime;
+    
 
     private void Awake()
     {
         RandomBL();
 
-        enemySSpeed = Mathf.Clamp(enemySSpeed, 0, enemySSpeed); ;
+        transform.Rotate(0, -90f, 0);
     }
     private void Start()
     {
-        player = GameObject.Find("Player").transform;
-
         esstate = ESState.Rush;
     }
 
@@ -51,61 +54,91 @@ public class EnemyS : MonoBehaviour
             case ESState.Rush:
                 Rush();
                 break;
-            case ESState.StopAtk:
-                StopAtk();
+            case ESState.CrossBLine:
+                CrossBLine();
                 break;
-            case ESState.Back:
-                Back();
+            case ESState.StopNTarget:
+                StopNTarget();
+                break;
+            case ESState.TurningBack:
+                TurningBack();
                 break;
         }
     }
     private void Rush()
     {
-        Vector3 ESDir = Vector3.left;
-        transform.Translate(ESDir * enemySSpeed * Time.deltaTime);
+        LookPlayer();
 
-        if(transform.position.x < eSBL.transform.position.x)
+        eSDir = Vector3.left;
+        transform.Translate(eSDir * enemySSpeed * Time.deltaTime, Space.World);
+
+        if (eSBL.transform.position.x > transform.position.x)
         {
-            esstate = ESState.StopAtk;
-
-            print("감속함");
+            Debug.Log("러시 > 브레이크");
+            esstate = ESState.CrossBLine;
         }
     }
-    private void StopAtk()
+    private void CrossBLine()
     {
-        print("상태변경 StopAtk");
-        Vector3 ESDir = Vector3.left;
-        enemySSpeed -= enemySdecelerationSpeed * Time.deltaTime;
+        LookPlayer();
 
-        if (enemySSpeed <= -0.2f)
+        transform.Translate(eSDir * enemySSpeed * Time.deltaTime, Space.World);
+        enemySSpeed -= enemySdeselSpeed * Time.deltaTime;
+
+        if (enemySSpeed < -0.5f)
         {
-            enemySdecelerationSpeed = 0.03f;
-            esstate = ESState.Back;
+            Debug.Log("브레이크 > 멈춤");
+            esstate = ESState.StopNTarget;
         }
+
     }
 
-    private void Back()
+    private void StopNTarget()
     {
-        Vector3 ESR = Vector3.back;
-        transform.Rotate(ESR * 45 * Time.deltaTime);
-        if (transform.rotation.x <= -90)
+        LookPlayer();
+
+        currentTime += Time.deltaTime;
+
+        if (currentTime > 3)
         {
-            enemySdecelerationSpeed = 40f;
+            Debug.Log("멈춤 > 후퇴");
+            esstate = ESState.TurningBack;
         }
     }
+    private void TurningBack()
+    {
+        transform.Translate(eSDir * enemySSpeed * Time.deltaTime,Space.World );
+        enemySSpeed -= enemySdeselSpeed * Time.deltaTime;
+
+        if(transform.rotation.x <= 0)
+        {
+            transform.Rotate(Vector3.right * -enemyFallBackRotate * Time.deltaTime,Space.Self);
+        }
+        if( transform.rotation.x > 0)
+        {
+            transform.Rotate(Vector3.right * enemyFallBackRotate * Time.deltaTime, Space.Self);
+        }
+        
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// 
 
     private void RandomBL()
     {
         if (eSBLList.Length > 0)
         {
-            int randomIndex = UnityEngine.Random.Range(0, eSBLList.Length);
+            int randomBreakL = UnityEngine.Random.Range(0, eSBLList.Length);
 
-            eSBL = eSBLList[randomIndex];
-
-            print(randomIndex);
+            eSBL = eSBLList[randomBreakL];
         }
     }
+
+    private void LookPlayer()
+    {
+        eSLookDir = transform.position - player.position;
+
+        transform.rotation = Quaternion.LookRotation(eSLookDir);
+    }
 }
-//enemySdecelerationSpeed = 40f;
-//transform.Rotate(ESR * 45 * Time.deltaTime);
-//에너미 움직이는걸 함수로 만들어서 모든 상태에 넣기
