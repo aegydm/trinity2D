@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemySMBullet : MonoBehaviour
 {
-    public float enemySMBulletSpeed = 14;
-    public float enemySMBulletDMG = 0;
-    public float enemySMBulletDestroy = 5;
+    [SerializeField] private float enemySMBulletSpeed = 14;
+    [SerializeField] private float enemySMBulletDMG = 0;
+    [SerializeField] private float enemySMBulletDestroy = 5;
 
     Vector3 enemySMBulletDir;
     void Start()
