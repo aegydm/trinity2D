@@ -151,11 +151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23750d656d280174aabc60bb4f7625c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySSpeed: 3
-  enemySdecelerationSpeed: 2
-  enemySHP: 1
+  enemySSpeed: 14
+  enemySdeselSpeed: 14
+  enemyFallBackRotate: 60
   player: {fileID: 0}
-  eSBLList: []
+  eSBLList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6427966464225743532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9125498205815684883}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63fa7f8556cce414fa476efbd9cb570c, type: 3}
   m_Name: 
