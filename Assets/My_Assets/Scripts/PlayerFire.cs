@@ -23,7 +23,7 @@ public class PlayerFire : MonoBehaviour
             GameObject PNBulletGO = Instantiate(PNBullet);
 
             PNBPool.Add(PNBulletGO);
-            PNBulletGO.transform.parent = transform;
+            //PNBulletGO.transform.parent = transform;
             PNBulletGO.SetActive(false);
         }
     }
