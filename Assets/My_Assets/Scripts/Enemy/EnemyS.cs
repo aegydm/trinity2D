@@ -20,7 +20,6 @@ public class EnemyS : MonoBehaviour
     [SerializeField] private float enemySSpeed = 14.0f;
     [SerializeField] private float enemySdeselSpeed = 14.0f;
     [SerializeField] private float enemyFallBackRotate = 210.0f;
-    private int enemySHP = 0;
 
     private Vector3 eSDir;
     private Vector3 eSLookDir;
@@ -62,6 +61,17 @@ public class EnemyS : MonoBehaviour
             case ESState.TurningBack:
                 TurningBack();
                 break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            gameObject.SetActive(false);
+            Debug.Log("에너미 격파");
+            gameObject.transform.position = Vector3.zero;
+            gameObject.transform.rotation = Quaternion.identity;
         }
     }
     private void Rush()

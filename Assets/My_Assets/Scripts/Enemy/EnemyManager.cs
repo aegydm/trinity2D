@@ -1,161 +1,163 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
-using System.IO;
-public class EnemyManager : MonoBehaviour
-{
-    [SerializeField] private int enemySListLength = 20;
-//    [SerializeField] private int enemyMListLength = 10;
-//    [SerializeField] private int enemyLListLength = 5;
-    [SerializeField] private GameObject enemyS; //_enemyS
-                                                //    [SerializeField] private GameObject enemyM; //_enemyM
-                                                //    [SerializeField] private GameObject enemyL; //_enemyL
-    List<GameObject> enemySList = new List<GameObject>();
-    //    List<GameObject> enemyMList = new List<GameObject>();
-    //    List<GameObject> enemyLList = new List<GameObject>(); // 풀링용 리스트
-    //    [SerializeField] private GameObject[] spawnPoints;    // 스폰 포인트 배열
+//using system.collections;
+//using system.collections.generic;
+//using unityengine;
+//using unityengine.uielements;
+//using system.io;
+//using UnityEngine;
 
-    //    List<EnemySpawn> enemySpawnList = new List<EnemySpawn>();  // 텍스트파일 읽어온 정보 저장용 리스트
+//public class enemymanager : monobehaviour
+//{
+//    [serializefield] private int enemyslistlength = 20;
+//    [serializefield] private int enemymlistlength = 10;
+//    [serializefield] private int enemyllistlength = 5;
+//    [serializefield] private gameobject enemys; //_enemys
+//    [serializefield] private gameobject enemym; //_enemym
+//    [serializefield] private gameobject enemyl; //_enemyl
+//    list<gameobject> enemyslist = new list<gameobject>();
+//    list<gameobject> enemymlist = new list<gameobject>();
+//    list<gameobject> enemyllist = new list<gameobject>(); // 풀링용 리스트
+//    [serializefield] private gameobject[] spawnpoints;    // 스폰 포인트 배열
 
-    //    public GameObject enemyToSpawn;
+//    list<enemyspawn> enemyspawnlist = new list<enemyspawn>();  // 텍스트파일 읽어온 정보 저장용 리스트
 
-    //    EnemySpawn enemySpawnData;
+//    public gameobject enemytospawn;
 
-    //    private bool spawnEnd = true;
+//    enemyspawn enemyspawndata;
 
-    private void Start()
-    {
-        PullingEnemyS();
-        //        PullingEnemyM();
-        //        PullingEnemyL();
+//    private bool spawnend = true;
 
-        //        ReadSpawnFile();
+//    private void start()
+//    {
+//        pullingenemys();
+//        pullingenemym();
+//        pullingenemyl();
 
-        //        SpawnEnemy();
-    }
+//        readspawnfile();
 
-    //    private void Update()
-    //    {
+//        spawnenemy();
+//    }
 
-    //    }
+//    private void update()
+//    {
 
-    private void PullingEnemyS()
-{
-    for (int i = 0; i < enemySListLength; i++)
-    {
-        GameObject _enemyS = Instantiate(enemyS);
-        enemySList.Add(_enemyS);
+//    }
 
-        _enemyS.SetActive(false);
+//    private void pullingenemys()
+//    {
+//        for (int i = 0; i < enemyslistlength; i++)
+//        {
+//            gameobject _enemys = instantiate(enemys);
+//            enemyslist.add(_enemys);
 
-        _enemyS.transform.parent = transform;
+//            _enemys.setactive(false);
 
-        Debug.Log("풀링 완료");
-    }
-}
+//            _enemys.transform.parent = transform;
 
-    //    private void PullingEnemyM()
-    //    {
-    //        for (int i = 0; i < enemyMListLength; i++)
-    //        {
-    //            GameObject _enemyM = Instantiate(enemyM);
-    //            enemyMList.Add(_enemyM);
+//            debug.log("풀링 완료");
+//        }
+//    }
 
-    //            _enemyM.SetActive(false);
+//    private void pullingenemym()
+//    {
+//        for (int i = 0; i < enemymlistlength; i++)
+//        {
+//            gameobject _enemym = instantiate(enemym);
+//            enemymlist.add(_enemym);
 
-    //            _enemyM.transform.parent = transform;
-    //        }
-    //    }
+//            _enemym.setactive(false);
 
-    //    private void PullingEnemyL()
-    //    {
-    //        for (int i = 0; i < enemyLListLength; i++)
-    //        {
-    //            GameObject _enemyL = Instantiate(enemyL);
-    //            enemyLList.Add(_enemyL);
+//            _enemym.transform.parent = transform;
+//        }
+//    }
 
-    //            _enemyL.SetActive(false);
+//    private void pullingenemyl()
+//    {
+//        for (int i = 0; i < enemyllistlength; i++)
+//        {
+//            GameObject _enemyl = Instantiate(enemyl);
+//            enemyllist.add(_enemyl);
 
-    //            _enemyL.transform.parent = transform;
-    //        }
-    //    }
+//            _enemyl.setactive(false);
 
-    //    private GameObject GetInactiveEnemy(List<GameObject> enemyList)
-    //    {
-    //        foreach (GameObject enemy in enemyList)
-    //        {
-    //            if (!enemy.activeSelf)
-    //            {
-    //                Debug.Log("풀링 활성화");
-    //                return enemy;
-    //            }
-    //        }
-    //        return null;
-    //    }
+//            _enemyl.transform.parent = transform;
+//        }
+//    }
 
-    //    private void ReadSpawnFile()
-    //    {
-    //        TextAsset stage1 = Resources.Load("Stage 1") as TextAsset;
-    //        StringReader stringReader = new StringReader(stage1.text);
+//    private gameobject getinactiveenemy(list<gameobject> enemylist)
+//    {
+//        foreach (gameobject enemy in enemylist)
+//        {
+//            if (!enemy.activeself)
+//            {
+//                debug.log("풀링 활성화");
+//                return enemy;
+//            }
+//        }
+//        return null;
+//    }
 
-    //        while (stringReader != null)
-    //        {
-    //            string line = stringReader.ReadLine();
+//    private void readspawnfile()
+//    {
+//        textasset stage1 = resources.load("stage 1") as textasset;
+//        stringreader stringreader = new stringreader(stage1.text);
 
-    //            if (line == null)
-    //                break;
+//        while (stringreader != null)
+//        {
+//            string line = stringreader.readline();
 
-    //            EnemySpawn es = new EnemySpawn();
+//            if (line == null)
+//                break;
 
-    //            es.spawnTime = float.Parse(line.Split(',')[0]); //스폰 시간 float
-    //            es.enemyType = line.Split(',')[1];              //적 유형 string
-    //            es.spawnPoint = int.Parse(line.Split(',')[2]);  //스폰포인트 int
+//            enemyspawn es = new enemyspawn();
 
-    //            Debug.Log("시간" + es.spawnTime);
-    //            Debug.Log("유형" + es.enemyType);
-    //            Debug.Log("위치" + es.spawnPoint);
+//            es.spawntime = float.parse(line.split(',')[0]); //스폰 시간 float
+//            es.enemytype = line.split(',')[1];              //적 유형 string
+//            es.spawnpoint = int.parse(line.split(',')[2]);  //스폰포인트 int
 
-    //            enemySpawnList.Add(enemySpawnData);
-    //            Debug.Log(enemySpawnData);
-    //        }
-    //        stringReader.Close();
-    //    }
+//            debug.log("시간" + es.spawntime);
+//            debug.log("유형" + es.enemytype);
+//            debug.log("위치" + es.spawnpoint);
 
-    //    public void SpawnEnemy()
-    //    {
-    //        while (spawnEnd)
-    //        {
-    //            Debug.Log(spawnEnd); //11번 돈다
-    //            switch (enemySpawnData.enemyType)
-    //            {
-    //                case "S":
-    //                    enemyToSpawn = GetInactiveEnemy(enemySList); //10번 활성화 txt파일은 8줄
-    //                    Debug.Log("S 소환");
-    //                    break;
-    //                case "M":
-    //                    enemyToSpawn = GetInactiveEnemy(enemyMList);
-    //                    Debug.Log("M 소환");
-    //                    break;
-    //                case "L":
-    //                    enemyToSpawn = GetInactiveEnemy(enemyLList);
-    //                    Debug.Log("L 소환");
-    //                    break;
-    //            }
-    //            if (enemyToSpawn != null)
-    //            {
-    //                GameObject spawnPoint = spawnPoints[enemySpawnData.spawnPoint - 1];
-    //                enemyToSpawn.transform.position = spawnPoint.transform.position;
-    //                enemyToSpawn.SetActive(true);
-    //            }
-    //            else
-    //            {
-    //                spawnEnd = false;
-    //                Debug.Log(spawnEnd);
-    //            }
-    //        }
-    //    }
-}
+//            enemyspawnlist.add(enemyspawndata);
+//            debug.log(enemyspawndata);
+//        }
+//        stringreader.close();
+//    }
+
+//    public void spawnenemy()
+//    {
+//        while (spawnend)
+//        {
+//            debug.log(spawnend); //11번 돈다
+//            switch (enemyspawndata.enemytype)
+//            {
+//                case "s":
+//                    enemytospawn = getinactiveenemy(enemyslist); //10번 활성화 txt파일은 8줄
+//                    debug.log("s 소환");
+//                    break;
+//                case "m":
+//                    enemytospawn = getinactiveenemy(enemymlist);
+//                    debug.log("m 소환");
+//                    break;
+//                case "l":
+//                    enemytospawn = getinactiveenemy(enemyllist);
+//                    debug.log("l 소환");
+//                    break;
+//            }
+//            if (enemytospawn != null)
+//            {
+//                gameobject spawnpoint = spawnpoints[enemyspawndata.spawnpoint - 1];
+//                enemytospawn.transform.position = spawnpoint.transform.position;
+//                enemytospawn.setactive(true);
+//            }
+//            else
+//            {
+//                spawnend = false;
+//                debug.log(spawnend);
+//            }
+//        }
+//    }
+//}
 
 
 

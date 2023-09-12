@@ -19,7 +19,7 @@ public class EnemySMBullet : MonoBehaviour
 
         enemySMBulletDir = (player.transform.position - transform.position).normalized;
 
-        Destroy(gameObject, 1);
+        Destroy(gameObject, enemySMBulletDestroy);
     }
 
     void Update()

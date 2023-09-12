@@ -18,4 +18,10 @@ public class PNBullet : MonoBehaviour
         }
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        gameObject.SetActive(false);
+        Debug.Log("총알 비활성화");
+    }
 }
