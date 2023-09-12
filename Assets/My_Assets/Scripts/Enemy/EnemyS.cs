@@ -19,18 +19,17 @@ public class EnemyS : MonoBehaviour
 
     [SerializeField] private float enemySSpeed = 14.0f;
     [SerializeField] private float enemySdeselSpeed = 14.0f;
-    [SerializeField] private float enemyFallBackRotate = 60.0f;
-     private int enemySHP = 1;
+    [SerializeField] private float enemyFallBackRotate = 210.0f;
+    private int enemySHP = 0;
 
     private Vector3 eSDir;
     private Vector3 eSLookDir;
 
-    [SerializeField] Transform player;
-    [SerializeField] Transform[] eSBLList;
-                     Transform eSBL;
+    private Transform player;
+    private int eSBL;
 
     private float currentTime;
-    
+
 
     private void Awake()
     {
@@ -40,15 +39,15 @@ public class EnemyS : MonoBehaviour
     }
     private void Start()
     {
+        player = GameObject.Find("Player").transform;
+
         esstate = ESState.Rush;
     }
 
     private void Update()
     {
-
         //if (GameManager.Instantiate.state != GameManager.GameState.inGame)
         //return;
-
         switch (esstate)
         {
             case ESState.Rush:
@@ -72,7 +71,7 @@ public class EnemyS : MonoBehaviour
         eSDir = Vector3.left;
         transform.Translate(eSDir * enemySSpeed * Time.deltaTime, Space.World);
 
-        if (eSBL.transform.position.x > transform.position.x)
+        if (eSBL > transform.position.x)
         {
             Debug.Log("러시 > 브레이크");
             esstate = ESState.CrossBLine;
@@ -107,18 +106,18 @@ public class EnemyS : MonoBehaviour
     }
     private void TurningBack()
     {
-        transform.Translate(eSDir * enemySSpeed * Time.deltaTime,Space.World );
+        transform.Translate(eSDir * enemySSpeed * Time.deltaTime, Space.World);
         enemySSpeed -= enemySdeselSpeed * Time.deltaTime;
 
-        if(transform.rotation.x <= 0)
+        if (transform.rotation.x <= 0)
         {
-            transform.Rotate(Vector3.right * -enemyFallBackRotate * Time.deltaTime,Space.Self);
+            transform.Rotate(Vector3.right * -enemyFallBackRotate * Time.deltaTime, Space.Self);
         }
-        if( transform.rotation.x > 0)
+        if (transform.rotation.x > 0)
         {
             transform.Rotate(Vector3.right * enemyFallBackRotate * Time.deltaTime, Space.Self);
         }
-        
+
     }
     /// <summary>
     /// 
@@ -127,12 +126,9 @@ public class EnemyS : MonoBehaviour
 
     private void RandomBL()
     {
-        if (eSBLList.Length > 0)
-        {
-            int randomBreakL = UnityEngine.Random.Range(0, eSBLList.Length);
+        int randomBreakL = UnityEngine.Random.Range(6, 11);
 
-            eSBL = eSBLList[randomBreakL];
-        }
+        eSBL = randomBreakL;
     }
 
     private void LookPlayer()

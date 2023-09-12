@@ -11,7 +11,7 @@ public class PlayerFire : MonoBehaviour
     private float fireRateDelay = 0f;
 
     public int poolSize = 30;      //źâ
-    public List<GameObject> PNBPool; 
+    public List<GameObject> PNBPool;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,9 @@ public class PlayerFire : MonoBehaviour
         {
             GameObject PNBulletGO = Instantiate(PNBullet);
 
-            PNBPool.Add(PNBulletGO);
             //PNBulletGO.transform.parent = transform;
+
+            PNBPool.Add(PNBulletGO);
             PNBulletGO.SetActive(false);
         }
     }
@@ -77,6 +78,7 @@ public class PlayerFire : MonoBehaviour
             PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0, 0);
 
             PNBPool.Remove(PNBulletGO);
+            PNBPool.Add(PNBulletGO);
 
         }
     }

@@ -7,7 +7,7 @@ public class EnemySMFire : MonoBehaviour
     public GameObject enemySMBullet;
     public GameObject gun;
 
-    public float fireRate = 3.0f;
+    public float fireRate = 2.5f;
     private float currentTime;
     void Start()
     {

@@ -11,6 +11,11 @@ public class PNBullet : MonoBehaviour
     void Update()
     {
         transform.position += dir * speed * Time.deltaTime;
-        
+
+        if (transform.position.x > 11)
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 }

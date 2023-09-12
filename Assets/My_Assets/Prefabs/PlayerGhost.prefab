@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639730363940263499}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2904661453278510139}
   - component: {fileID: 7721148117366129193}
   - component: {fileID: 9217619326106839786}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
