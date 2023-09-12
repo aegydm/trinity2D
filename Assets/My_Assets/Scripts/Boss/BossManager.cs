@@ -4,27 +4,28 @@ using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class BossBehavior : MonoBehaviour
+public class BossManager : MonoBehaviour
 {
-    public int patternIndex;
-    public int curPatternCount;
-    public int[] maxPatternCount;
-    public GameObject bossbullet;
-    public GameObject gunPos;
-    public int degree = 15;
-    public Animator animator;
+    [SerializeField] private int patternIndex;
+    [SerializeField] private int curPatternCount;
+    [SerializeField] private int[] maxPatternCount;
+    [SerializeField] private GameObject bossbullet;
+    [SerializeField] private GameObject gunPos;
+    [SerializeField] private int degree = 15;
+    [SerializeField] private Animator animator;
     void Start()
     {
         Debug.Log("보스 등장");
         Invoke("Think", 3);
     }
-    void Think()
+    private void Think()
     {
         Debug.Log("보스 생각해");
         patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
         curPatternCount = 0;// 초기화
         switch (patternIndex)
         {
+
             case 0:
                 BossPattern4();
                 break;
@@ -39,7 +40,7 @@ public class BossBehavior : MonoBehaviour
                 break;
         }
     }
-    void BossPattern1()
+    private void BossPattern1()
     {
         Debug.Log("보스패턴 1 사용");
         int numOfBullet = 360 / degree;
@@ -56,7 +57,7 @@ public class BossBehavior : MonoBehaviour
         else
             Invoke("Think", 2);
     }
-    void BossPattern2()
+    private  void BossPattern2()
     {
         Debug.Log("보스패턴 2 사용");
         animator.SetTrigger("BossTackle");
@@ -66,7 +67,7 @@ public class BossBehavior : MonoBehaviour
         else
         Invoke("Think", 3);
     }
-    void BossPattern3()
+    private void BossPattern3()
     {
         Debug.Log("보스패턴 3 사용");
         curPatternCount++;
@@ -75,7 +76,7 @@ public class BossBehavior : MonoBehaviour
         else
             Invoke("Think", 4);
     }
-    void BossPattern4()
+    private void BossPattern4()
     {
         Debug.Log("보스패턴 4 사용");
         curPatternCount++;
