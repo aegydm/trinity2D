@@ -10,6 +10,9 @@ public class BossBehavior : MonoBehaviour
     public int curPatternCount;
     public int[] maxPatternCount;
     public GameObject bossbullet;
+    public GameObject gunPos;
+    public int degree = 15;
+    public Animator animator;
     void Start()
     {
         Debug.Log("보스 등장");
@@ -39,9 +42,14 @@ public class BossBehavior : MonoBehaviour
     void BossPattern1()
     {
         Debug.Log("보스패턴 1 사용");
-
-
-
+        int numOfBullet = 360 / degree;
+        for (int i = 0; i < numOfBullet; i++)
+        {
+            GameObject bulletGO = Instantiate(bossbullet);
+            bulletGO.transform.position = gunPos.transform.position;
+            bulletGO.transform.rotation = Quaternion.Euler(0, 0, i * degree);
+            bulletGO.GetComponent<BossBullet>().dir = bulletGO.transform.right;
+        }
         curPatternCount++;
         if (curPatternCount < maxPatternCount[patternIndex])
             Invoke("BossPattern1", 1.0f);
@@ -51,6 +59,7 @@ public class BossBehavior : MonoBehaviour
     void BossPattern2()
     {
         Debug.Log("보스패턴 2 사용");
+        animator.SetTrigger("BossTackle");
         curPatternCount++;
         if (curPatternCount < maxPatternCount[patternIndex])
             Invoke("BossPattern2", 1.0f);

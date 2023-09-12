@@ -574,6 +574,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1622457589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1622457590}
+  m_Layer: 0
+  m_Name: GunPos
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1622457590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622457589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.64, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2126911217}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073072553
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +811,12 @@ MonoBehaviour:
   health: 100
   deathEffect: {fileID: 0}
   isInvulnerable: 0
+--- !u!4 &2126911217 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2166670167719780120, guid: 721b48a2dd9e70845bbeacd0c5d54adf,
+    type: 3}
+  m_PrefabInstance: {fileID: 4107303496699727340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4107303496699727340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -788,6 +825,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 28030883717768770, guid: 721b48a2dd9e70845bbeacd0c5d54adf,
+        type: 3}
+      propertyPath: gunPos
+      value: 
+      objectReference: {fileID: 1622457589}
+    - target: {fileID: 28030883717768770, guid: 721b48a2dd9e70845bbeacd0c5d54adf,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2126911210}
+    - target: {fileID: 28030883717768770, guid: 721b48a2dd9e70845bbeacd0c5d54adf,
+        type: 3}
+      propertyPath: bossbullet
+      value: 
+      objectReference: {fileID: 8147279877365712044, guid: d21bdb0149887f545ae46504429813b0,
+        type: 3}
     - target: {fileID: 907423473904615106, guid: 721b48a2dd9e70845bbeacd0c5d54adf,
         type: 3}
       propertyPath: m_CastShadows
@@ -855,7 +908,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2166670167719780120, guid: 721b48a2dd9e70845bbeacd0c5d54adf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1622457590}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3312310031560987769, guid: 721b48a2dd9e70845bbeacd0c5d54adf,
         type: 3}
@@ -870,74 +927,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2126911212}
   m_SourcePrefab: {fileID: 100100000, guid: 721b48a2dd9e70845bbeacd0c5d54adf, type: 3}
---- !u!1001 &6559527258339239564
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619110869019395113, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8147279877365712044, guid: d21bdb0149887f545ae46504429813b0,
-        type: 3}
-      propertyPath: m_Name
-      value: BossBullet
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d21bdb0149887f545ae46504429813b0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -949,4 +938,3 @@ SceneRoots:
   - {fileID: 1617724901}
   - {fileID: 4107303496699727340}
   - {fileID: 1558828401}
-  - {fileID: 6559527258339239564}
