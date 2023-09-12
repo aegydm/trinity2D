@@ -12,12 +12,12 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] spawnpoints;
     private int ranIndex;
 
-    private void Start()
-    {
-        PullingEnemyS();
+    //private void Start()
+    //{
+    //    PullingEnemyS();
 
-        Stage1();
-    }
+    //    Stage1();
+    //}
 
 
 

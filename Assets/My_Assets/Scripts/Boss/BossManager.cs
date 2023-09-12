@@ -13,11 +13,11 @@ public class BossManager : MonoBehaviour
     [SerializeField] private GameObject gunPos;
     [SerializeField] private int degree = 15;
     [SerializeField] private Animator animator;
-    void Start()
-    {
-        Debug.Log("보스 등장");
-        Invoke("Think", 3);
-    }
+    //void Start()
+    //{
+    //    Debug.Log("보스 등장");
+    //    Invoke("Think", 3);
+    //}
     private void Think()
     {
         Debug.Log("보스 생각해");
