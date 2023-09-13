@@ -28,7 +28,6 @@ public class EnemyS : MonoBehaviour
     private int eSBL;
 
     private float currentTime;
-
     //public GameObject explosionEff;
 
     private void Awake()
@@ -71,18 +70,31 @@ public class EnemyS : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.tag == "PlayerBullet")
         {
             //GameObject explosionGO = Instantiate(explosionEff);
             //explosionGO.transform.position = gameObject.transform.position;
 
-            gameObject.SetActive(false);
-            Debug.Log("에너미 격파");
+            enemySSpeed = 14.0f;
+            enemySdeselSpeed = 14.0f;
+            enemyFallBackRotate = 210.0f;
+
+            esstate = ESState.Rush;
 
             gameObject.transform.position = Vector3.zero;
             gameObject.transform.rotation = Quaternion.identity;
+
+            gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
+            Debug.Log("에너미 격파");
         }
     }
+
+    private static string GetName(Collision collision)
+    {
+        return collision.gameObject.name;
+    }
+
     private void Rush()
     {
         LookPlayer();

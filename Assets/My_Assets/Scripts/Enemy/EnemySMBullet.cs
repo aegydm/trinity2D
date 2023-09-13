@@ -39,7 +39,7 @@ public class EnemySMBullet : MonoBehaviour
                 Debug.Log("이프 맞음");
                 player.GetComponent<PlayerInfo>()._PlayerHp--;
 
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
 
                 calledCollision = true;
             }

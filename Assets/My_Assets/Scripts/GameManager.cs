@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState = GameState.menu;
     public float time;
     public GameObject boss;
-
     public GameObject menuUi;
     public GameObject overUi;
 
@@ -126,7 +125,4 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         overUi.SetActive(true);
     }
-
-
-
 }

@@ -19,10 +19,12 @@ public class PlayerInfo : MonoBehaviour
         set { PlayerHp = value; }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision otherObject)
     {
-        if (collision.gameObject.layer == 7)
+        if (otherObject.gameObject.tag == "EnemySMBullet")
         {
+            otherObject.gameObject.SetActive(false);
+
             if (PlayerHp <= 0)
             {
                 GameManager.instance.GameOver();

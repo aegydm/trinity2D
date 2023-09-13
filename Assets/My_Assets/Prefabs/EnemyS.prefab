@@ -154,11 +154,6 @@ MonoBehaviour:
   enemySSpeed: 14
   enemySdeselSpeed: 14
   enemyFallBackRotate: 60
-  player: {fileID: 0}
-  eSBLList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &6427966464225743532
 MonoBehaviour:
   m_ObjectHideFlags: 0
