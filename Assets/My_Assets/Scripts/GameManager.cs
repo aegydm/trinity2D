@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
         //SetGameState(GameState.menu);  제귀함수오류발생~ 방지
         Menu();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
-        bossManager = GameObject.Find("Boss").GetComponent<BossManager>();
-        Debug.Log("위 오류는 보스가 비활성되어 찾지못하는 오류");
+        //bossManager = GameObject.Find("Boss").GetComponent<BossManager>();
+        //Debug.Log("위 오류는 보스가 비활성되어 찾지못하는 오류");
     }
     void Update()
     {

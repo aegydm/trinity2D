@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySMBullet : MonoBehaviour
 {
     [SerializeField] private float enemySMBulletSpeed = 14;
-    [SerializeField] private float enemySMBulletDMG = 1;
     [SerializeField] private float enemySMBulletDestroy = 5;
 
     private GameObject player;

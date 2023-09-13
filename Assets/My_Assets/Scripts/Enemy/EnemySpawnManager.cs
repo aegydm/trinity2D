@@ -26,7 +26,7 @@ public class EnemySpawnManager : MonoBehaviour
         ranIndex = UnityEngine.Random.Range(0, spawnpoints.Length);
     }
 
-    private void PullingEnemyS()
+    public void PullingEnemyS()
     {
         for (int i = 0; i < enemySListLength; i++)
         {
@@ -63,7 +63,7 @@ public class EnemySpawnManager : MonoBehaviour
         }
     }
 
-    private void Stage1()
+    public void Stage1()
     {
         Invoke("EnemySSpawn", 0);
         Invoke("EnemySSpawn", 2);
