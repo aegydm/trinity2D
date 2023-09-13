@@ -14,9 +14,6 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void Start()
     {
-        PullingEnemyS();
-
-        Stage1();
     }
 
 
