@@ -154,11 +154,8 @@ MonoBehaviour:
   enemySSpeed: 14
   enemySdeselSpeed: 14
   enemyFallBackRotate: 60
-  player: {fileID: 0}
-  eSBLList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  explosionEff: {fileID: 1159861694353023809, guid: 7d5c34a6e3189934db6da90523b4b4e4,
+    type: 3}
 --- !u!114 &6427966464225743532
 MonoBehaviour:
   m_ObjectHideFlags: 0

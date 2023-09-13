@@ -29,7 +29,7 @@ public class EnemyS : MonoBehaviour
 
     private float currentTime;
 
-    //public GameObject explosionEff;
+    public GameObject explosionEff;
 
     private void Awake()
     {
@@ -73,8 +73,8 @@ public class EnemyS : MonoBehaviour
     {
         if (collision.gameObject.layer == 6)
         {
-            //GameObject explosionGO = Instantiate(explosionEff);
-            //explosionGO.transform.position = gameObject.transform.position;
+            GameObject explosionGO = Instantiate(explosionEff);
+            explosionGO.transform.position = gameObject.transform.position;
 
             gameObject.SetActive(false);
             Debug.Log("에너미 격파");
