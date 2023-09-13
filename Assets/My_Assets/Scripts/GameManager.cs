@@ -14,6 +14,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    public PlayerInfo playerInfo;
     public static GameManager instance;
     public EnemySpawnManager enemySpawnManager;
     public BossManager bossManager;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject boss;
 
     public GameObject menuUi;
+    public GameObject overUi;
 
     private void Awake()
     {
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         //SetGameState(GameState.menu);  제귀함수오류발생~ 방지
         Menu();
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
         //bossManager = GameObject.Find("Boss").GetComponent<BossManager>();
         //Debug.Log("위 오류는 보스가 비활성되어 찾지못하는 오류");
@@ -47,9 +50,8 @@ public class GameManager : MonoBehaviour
     {
         //CheckGameOver();  // 게임오버(클리어 / 게임오버 통일)
         time += Time.deltaTime;
-        if (time > 15)
+        if (time > 15 && time <16)
         {
-            Debug.Log("보스소환");
             InBoss();  //조건 부합시 보스전으로 이동
         }
     }
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
         }
         else if (newGameState == GameState.gameOver)
         {
-
+            GameOver();
         }
         currentGameState = newGameState;         //외부에서 상태받기 - 안쓰게됨
     }
@@ -103,21 +105,26 @@ public class GameManager : MonoBehaviour
     }
     public void InBoss() //게임중인상태 - 보스필드 상태
     {
+        Debug.Log("보스켜짐");
         boss.SetActive(true);
-        bossManager.Invoke("Think", 3);
+        //bossManager.Invoke("Think", 3);
     }
 
     public void CheckGameOver()   //상시검사, 게임 오버 여부 판별
     {
-        //플레이어 체력검사
-        //플레이어 채력 0 시 게임 오버
-        //플레이어 생존 보스 다운 = 게임 승리 
-        SetGameState(GameState.gameOver);
+        if(playerInfo._PlayerHp <= 0)
+        {
+            SetGameState(GameState.gameOver);
+        }
+        //else if()
+        //{
+
+        //}
     }
     public void GameOver()   //임시코드 (보스 생존여부 판단 불가시 따로 외부에서 선언해줘야할함수
     {
         Time.timeScale = 0;
-        SetGameState(GameState.gameOver);
+        overUi.SetActive(true);
     }
 
 

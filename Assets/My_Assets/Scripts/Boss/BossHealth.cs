@@ -40,8 +40,14 @@ public class BossHealth : MonoBehaviour
     {
         Debug.Log("보스 격파");
         animator.SetTrigger("BossDead");
+        Invoke("BossGameOver",3);
+
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         //gameObject.SetActive(false);
         //Destroy(gameObject);
+    }
+    void BossGameOver()
+    {
+        GameManager.instance.GameOver();
     }
 }
