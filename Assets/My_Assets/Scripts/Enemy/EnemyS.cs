@@ -29,6 +29,7 @@ public class EnemyS : MonoBehaviour
 
     private float currentTime;
 
+    //public GameObject explosionEff;
 
     private void Awake()
     {
@@ -47,6 +48,10 @@ public class EnemyS : MonoBehaviour
     {
         //if (GameManager.Instantiate.state != GameManager.GameState.inGame)
         //return;
+
+        if (gameObject.transform.position.x > 15)
+            gameObject.SetActive(false);
+
         switch (esstate)
         {
             case ESState.Rush:
@@ -68,8 +73,12 @@ public class EnemyS : MonoBehaviour
     {
         if (collision.gameObject.layer == 6)
         {
+            //GameObject explosionGO = Instantiate(explosionEff);
+            //explosionGO.transform.position = gameObject.transform.position;
+
             gameObject.SetActive(false);
-            //Debug.Log("¿¡³Ê¹Ì °İÆÄ");
+            Debug.Log("¿¡³Ê¹Ì °İÆÄ");
+
             gameObject.transform.position = Vector3.zero;
             gameObject.transform.rotation = Quaternion.identity;
         }
@@ -83,7 +92,7 @@ public class EnemyS : MonoBehaviour
 
         if (eSBL > transform.position.x)
         {
-            //Debug.Log("·¯½Ã > ºê·¹ÀÌÅ©");
+            Debug.Log("·¯½Ã > ºê·¹ÀÌÅ©");
             esstate = ESState.CrossBLine;
         }
     }
@@ -96,7 +105,7 @@ public class EnemyS : MonoBehaviour
 
         if (enemySSpeed < -0.5f)
         {
-            //Debug.Log("ºê·¹ÀÌÅ© > ¸ØÃã");
+            Debug.Log("ºê·¹ÀÌÅ© > ¸ØÃã");
             esstate = ESState.StopNTarget;
         }
 
@@ -110,7 +119,7 @@ public class EnemyS : MonoBehaviour
 
         if (currentTime > 3)
         {
-            //Debug.Log("¸ØÃã > ÈÄÅğ");
+            Debug.Log("¸ØÃã > ÈÄÅğ");
             esstate = ESState.TurningBack;
         }
     }
