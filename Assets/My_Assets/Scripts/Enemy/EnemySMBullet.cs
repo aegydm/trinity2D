@@ -5,11 +5,10 @@ using UnityEngine;
 public class EnemySMBullet : MonoBehaviour
 {
     [SerializeField] private float enemySMBulletSpeed = 14;
-    [SerializeField] private float enemySMBulletDMG = 1;
     [SerializeField] private float enemySMBulletDestroy = 5;
 
     private GameObject player;
-    private GameObject gameManager;
+    //private GameObject gameManager;
 
     Vector3 enemySMBulletDir;
     void Start()
@@ -31,6 +30,8 @@ public class EnemySMBullet : MonoBehaviour
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
+        player.GetComponent<PlayerInfo>()._PlayerHP--;
+
         Debug.Log("콜리전 맞음");
         if (collision.gameObject.layer == 6)
         {
