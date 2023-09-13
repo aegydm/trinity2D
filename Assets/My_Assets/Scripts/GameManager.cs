@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject menuUi;
     public GameObject overUi;
+    public GameObject stopUi;
 
     private void Awake()
     {
@@ -39,93 +39,110 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        //SetGameState(GameState.menu);  제귀함수오류발생~ 방지
         Menu();
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
         //bossManager = GameObject.Find("Boss").GetComponent<BossManager>();
-        //Debug.Log("위 오류는 보스가 비활성되어 찾지못하는 오류");
     }
+
     void Update()
     {
-        //CheckGameOver();  // 게임오버(클리어 / 게임오버 통일)
         time += Time.deltaTime;
-        if (time > 15 && time <16)
-        {
-            InBoss();  //조건 부합시 보스전으로 이동
-        }
+
+        if (time > 12){InBoss();}
+
+        if (Input.GetKeyDown(KeyCode.Escape)){StopGame();}
     }
+
     void SetGameState(GameState newGameState)
     {
         if (newGameState == GameState.menu)
         {
-            //Menu();
+            //Menu();                     제귀함수오류발생 방지
+            overUi.SetActive(false);
+            menuUi.SetActive(true);
+            stopUi.SetActive(false);
         }
         else if (newGameState == GameState.inGame)
         {
-            Ingame(); //EnemySpawnManager, BossManager
+            Ingame(); 
+            overUi.SetActive(false);
+            menuUi.SetActive(false);
+            stopUi.SetActive(false);
         }
         else if (newGameState == GameState.gameOver)
         {
-            GameOver();
+            //GameOver();;                제귀함수오류발생 방지
+            overUi.SetActive(true);
+            menuUi.SetActive(false);
+            stopUi.SetActive(false);
         }
-        currentGameState = newGameState;         //외부에서 상태받기 - 안쓰게됨
+        currentGameState = newGameState;  //게임상태 검색에 사용하면 되는 변수
     }
 
-    //----------------------외부에의한 상태변화---------------------------
-    public void Menu()        //게임 실행시 첫 화면, 시작 버튼이 존재
+    //----------------------상태 입력에 따른 값들---------------------------
+    public void Menu()                          //게임 실행시 첫 화면, 시작 버튼이 존재
     {
-        menuUi.SetActive(true);   // 메뉴 활성화 - UI메니저 할당
-        Time.timeScale = 0;         // 게임시간 일시정지
+        Time.timeScale = 0;
         SetGameState(GameState.menu);
     }
-    public void StartGame()   //게임시작 버튼 눌리면 실행
-    {
-        menuUi.SetActive(false);
-        Time.timeScale = 1;
-        SetGameState(GameState.inGame);
-    }
-    public void QuitGame()    //게임 나가기버튼
-    {
-        Application.Quit();
-    }
-    //--------------------------------------------------------------------
 
-
-    public void Ingame() //게임중인상태 - 노멀상태 일반 몹, 정예몹
+    public void Ingame()                        //게임중인상태 - 노멀상태 일반 몹, 정예몹
     {
         Debug.Log("인게임 실행됨");
         enemySpawnManager.PullingEnemyS();      //에너미 풀링
         enemySpawnManager.Stage1();             //스테이지 실행 = 에너미S 4마리 출현 
-
-        while (currentGameState == GameState.inGame)
-        {
-
-        }
     }
-    public void InBoss() //게임중인상태 - 보스필드 상태
+    public void InBoss()                        //게임중인상태 - 보스필드 상태
     {
         Debug.Log("보스켜짐");
         boss.SetActive(true);
         //bossManager.Invoke("Think", 3);
     }
 
-    public void CheckGameOver()   //상시검사, 게임 오버 여부 판별
+    public void GameOver()                      //임시 게임오버 코드 - 다른코드에서 GameManager.instance.GameOver(); 로 호출됨
     {
-        if(playerInfo._PlayerHp <= 0)
+        if (playerInfo._PlayerHp <= 0)
         {
+            Time.timeScale = 0;
             SetGameState(GameState.gameOver);
         }
-        //else if()
-        //{
+    }
 
-        //}
-    }
-    public void GameOver()   //임시코드 (보스 생존여부 판단 불가시 따로 외부에서 선언해줘야할함수
+    //----------------------버튼 입력에 따른 값들---------------------------
+
+    public void StartGame()        //게임시작 버튼 눌리면 실행
     {
-        Time.timeScale = 0;
-        overUi.SetActive(true);
+        Time.timeScale = 1;
+        SetGameState(GameState.inGame);
     }
+    public void QuitGame()         //게임 나가기버튼
+    {
+        Application.Quit();
+    }
+
+    public void StopGame()         // 일시정지 (ESC)
+    {
+        if (currentGameState == GameState.inGame)
+        {
+            if (Time.timeScale == 0)
+            {
+                stopUi.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else if (Time.timeScale == 1)
+            {
+                stopUi.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
+    }
+    
+    public void ResetGame()        //다시하기
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    //--------------------------------------------------------------------
 
 
 
