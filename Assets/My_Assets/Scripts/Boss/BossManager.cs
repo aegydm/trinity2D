@@ -13,8 +13,11 @@ public class BossManager : MonoBehaviour
     [SerializeField] private GameObject gunPos;
     [SerializeField] private int degree = 15;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject Indicator;
     void Start()
     {
+        Indicator = GameObject.Find("BossAttackIndicator");
+        Indicator.GetComponent<BossAttackIndicator>();
         Debug.Log("보스 등장");
         Invoke("Think", 3);
     }
@@ -59,7 +62,9 @@ public class BossManager : MonoBehaviour
     }
     private  void BossPattern2()
     {
+
         Debug.Log("보스패턴 2 사용");
+        StartCoroutine("Delay");
         animator.SetTrigger("BossTackle");
         curPatternCount++;
         if (curPatternCount < maxPatternCount[patternIndex])
@@ -69,6 +74,7 @@ public class BossManager : MonoBehaviour
     }
     private void BossPattern3()
     {
+        
         Debug.Log("보스패턴 3 사용");
         curPatternCount++;
         if (curPatternCount < maxPatternCount[patternIndex])
