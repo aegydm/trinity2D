@@ -11,6 +11,8 @@ public class EnemySMBullet : MonoBehaviour
     //private GameObject gameManager;
 
     Vector3 enemySMBulletDir;
+    private bool calledCollision = false;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -30,13 +32,17 @@ public class EnemySMBullet : MonoBehaviour
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        player.GetComponent<PlayerInfo>()._PlayerHP--;
-
-        Debug.Log("콜리전 맞음");
         if (collision.gameObject.layer == 6)
         {
-            Debug.Log("이프 맞음");
-            gameObject.SetActive(false);
+            if (!calledCollision)
+            {
+                Debug.Log("이프 맞음");
+                player.GetComponent<PlayerInfo>()._PlayerHp--;
+
+                //gameObject.SetActive(false);
+
+                calledCollision = true;
+            }
         }
     }
 }
