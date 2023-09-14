@@ -25,6 +25,7 @@ public class PlayerInfo : MonoBehaviour
         {
             if (PlayerHp <= 0)
             {
+                Destroy(gameObject);
                 GameManager.instance.GameOver();
             }
         }
