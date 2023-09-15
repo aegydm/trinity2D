@@ -20,13 +20,14 @@ public class CamShake : MonoBehaviour
     {
         
     }
-    public IEnumerator CamShaker(float duration = 0.05f, float magnitudePos = 0.03f, float magnitudeRot = 0.1f)
+    public IEnumerator CamShaker(float duration = 1.45f, float magnitudePos = 0.03f, float magnitudeRot = 0.0f)
     {
         float passTime = 0.1f;
         while (passTime < duration)
         {
             Vector3 shakePos = Random.insideUnitSphere;
             camShake.localPosition = shakePos * magnitudePos;
+            magnitudePos += 0.0002f;
 
             if (shakeRotate)
             {
