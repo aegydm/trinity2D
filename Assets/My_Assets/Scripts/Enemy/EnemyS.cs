@@ -38,33 +38,42 @@ public class EnemyS : MonoBehaviour
     }
     private void Start()
     {
-        player = GameObject.Find("Player").transform;
 
         esstate = ESState.Rush;
+
+        if (player != null)
+        {
+            player = GameObject.Find("Player").transform;
+
+        }
     }
+
 
     private void Update()
     {
         //if (GameManager.Instantiate.state != GameManager.GameState.inGame)
         //return;
 
-        if (gameObject.transform.position.x > 15)
-            gameObject.SetActive(false);
-
-        switch (esstate)
+        if (player != null)
         {
-            case ESState.Rush:
-                Rush();
-                break;
-            case ESState.CrossBLine:
-                CrossBLine();
-                break;
-            case ESState.StopNTarget:
-                StopNTarget();
-                break;
-            case ESState.TurningBack:
-                TurningBack();
-                break;
+            if (gameObject.transform.position.x > 15)
+                gameObject.SetActive(false);
+
+            switch (esstate)
+            {
+                case ESState.Rush:
+                    Rush();
+                    break;
+                case ESState.CrossBLine:
+                    CrossBLine();
+                    break;
+                case ESState.StopNTarget:
+                    StopNTarget();
+                    break;
+                case ESState.TurningBack:
+                    TurningBack();
+                    break;
+            }
         }
     }
 
@@ -169,3 +178,4 @@ public class EnemyS : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(eSLookDir);
     }
 }
+
