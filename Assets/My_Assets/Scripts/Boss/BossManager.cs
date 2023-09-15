@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.UI;
+using UnityEngine.UI;
 
 public class BossManager : MonoBehaviour
 {
@@ -13,11 +15,27 @@ public class BossManager : MonoBehaviour
     [SerializeField] private GameObject gunPos;
     [SerializeField] private int degree = 15;
     [SerializeField] private Animator animator;
+    
+    [SerializeField] private Slider BossRushIndicator;
+    private float maxIndicator = 100;
+    private float curIndicator = 0;  
+    
     void Start()
     {
+        BossRushIndicator.value = (float)curIndicator / (float)maxIndicator;
+
         Debug.Log("보스 등장");
         Invoke("Think", 3);
     }
+   private void Update(){
+        if (Input.GetKeyDown(KeyCode.Space))
+            Debug.Log("범위증가");
+        {
+            curIndicator += 100;
+        }
+        HandleIndicator();
+    }
+
     private void Think()
     {
         Debug.Log("보스 생각해");
@@ -43,17 +61,17 @@ public class BossManager : MonoBehaviour
     private void BossPattern1()
     {
         Debug.Log("보스패턴 1 사용");
-        int numOfBullet = 360 / degree;
+        int numOfBullet = 195 / degree;
         for (int i = 0; i < numOfBullet; i++)
         {
             GameObject bulletGO = Instantiate(bossbullet);
             bulletGO.transform.position = gunPos.transform.position;
-            bulletGO.transform.rotation = Quaternion.Euler(0, 0, i * degree);
+            bulletGO.transform.rotation = Quaternion.Euler(0, 0, (i + 270) * degree);
             bulletGO.GetComponent<BossBullet>().dir = bulletGO.transform.right;
         }
         curPatternCount++;
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("BossPattern1", 1.0f);
+            Invoke("BossPattern1", 0.1f);
         else
             Invoke("Think", 2);
     }
@@ -85,4 +103,10 @@ public class BossManager : MonoBehaviour
         else
             Invoke("Think", 1);
     }
+
+    private void HandleIndicator()
+    {
+        BossRushIndicator.value = Mathf.Lerp(BossRushIndicator.value, (float)curIndicator/(float)maxIndicator, Time.deltaTime * 0.01f);
+    }
+
 }
