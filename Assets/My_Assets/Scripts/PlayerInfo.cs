@@ -9,6 +9,8 @@ public class PlayerInfo : MonoBehaviour
     public int PlayerATK; //플레이어 기초 공격력
     //추가: 에너미 불렛 데미지
 
+    private float playerInvincibleTimer;
+
     private void Start()
     {
         PlayerHp = MaxPlayerHp;
@@ -16,13 +18,20 @@ public class PlayerInfo : MonoBehaviour
     public int _PlayerHp
     {
         get { return PlayerHp; }
-        set { PlayerHp = value; }
+        set {if (playerInvincibleTimer > 1){PlayerHp = value; playerInvincibleTimer = 0; } }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Update()
     {
-        if (collision.gameObject.layer == 7)
+        playerInvincibleTimer += Time.deltaTime;
+    }
+    private void OnCollisionEnter(Collision otherObject)
+    {
+        if (otherObject.gameObject.tag == "EnemySMBullet" || otherObject.gameObject.tag == "BossBullet")
         {
+            otherObject.gameObject.SetActive(false);
+            Debug.Log("E,B 총알 파괴됨");
+
             if (PlayerHp <= 0)
             {
                 GameManager.instance.GameOver();

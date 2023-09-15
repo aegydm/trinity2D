@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1578998937301397112}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1673472079695868278}
   - component: {fileID: 2157982807667001888}
   - component: {fileID: 6427966464225743532}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EnemyS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,11 +154,6 @@ MonoBehaviour:
   enemySSpeed: 14
   enemySdeselSpeed: 14
   enemyFallBackRotate: 60
-  player: {fileID: 0}
-  eSBLList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &6427966464225743532
 MonoBehaviour:
   m_ObjectHideFlags: 0

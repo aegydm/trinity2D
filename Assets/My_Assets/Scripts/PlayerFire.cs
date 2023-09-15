@@ -40,7 +40,7 @@ public class PlayerFire : MonoBehaviour
             }
             else
             {
-                BulletNumber();
+                BulletNumber0();
                 fireRateDelay = fireRate; 
             }
         }
@@ -51,21 +51,21 @@ public class PlayerFire : MonoBehaviour
         }
         
     }
-    public void BulletNumber()
-    {
-        switch (BulletNum)
-        {
-            case 0:
-                BulletNumber0();
-                break;
-            case 1:
-                BulletNumber1();
-                break;
-            case 2:
-                BulletNumber2();
-                break;
-        }
-    }
+    //public void BulletNumber()
+    //{
+    //    switch (BulletNum)
+    //    {
+    //        case 0:
+    //            BulletNumber0();
+    //            break;
+    //        case 1:
+    //            BulletNumber1();
+    //            break;
+    //        case 2:
+    //            BulletNumber2();
+    //            break;
+    //    }
+    //}
 
     void BulletNumber0()
     {
@@ -82,63 +82,63 @@ public class PlayerFire : MonoBehaviour
 
         }
     }
-    void BulletNumber1()
-    {
-        if (PNBPool.Count > 0)
-        {
-            GameObject PNBulletGO = PNBPool[0];
+    //void BulletNumber1()
+    //{
+    //    if (PNBPool.Count > 0)
+    //    {
+    //        GameObject PNBulletGO = PNBPool[0];
 
-            PNBulletGO.SetActive(true);
+    //        PNBulletGO.SetActive(true);
 
-            PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, -0.2f, 0);
+    //        PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, -0.2f, 0);
 
-            PNBPool.Remove(PNBulletGO);
-        }
-        if (PNBPool.Count > 0)
-        {
-            GameObject PNBulletGO = PNBPool[0];
+    //        PNBPool.Remove(PNBulletGO);
+    //    }
+    //    if (PNBPool.Count > 0)
+    //    {
+    //        GameObject PNBulletGO = PNBPool[0];
 
-            PNBulletGO.SetActive(true);
+    //        PNBulletGO.SetActive(true);
 
-            PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0.2f, 0);
+    //        PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0.2f, 0);
 
-            PNBPool.Remove(PNBulletGO);
-        }
-    }
-    void BulletNumber2()
-    {
-        if (PNBPool.Count > 0)
-        {
-            GameObject PNBulletGO = PNBPool[0];
+    //        PNBPool.Remove(PNBulletGO);
+    //    }
+    //}
+    //void BulletNumber2()
+    //{
+    //    if (PNBPool.Count > 0)
+    //    {
+    //        GameObject PNBulletGO = PNBPool[0];
 
-            PNBulletGO.SetActive(true);
+    //        PNBulletGO.SetActive(true);
 
-            PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0.2f, 0);
-            PNBulletGO.transform.rotation = Quaternion.Euler(0, 0, 20);
-            PNBulletGO.GetComponent<PNBullet>().dir = PNBulletGO.transform.right;
-            PNBPool.Remove(PNBulletGO);
-        }
-        if (PNBPool.Count > 0)
-        {
-            GameObject PNBulletGO = PNBPool[0];
+    //        PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0.2f, 0);
+    //        PNBulletGO.transform.rotation = Quaternion.Euler(0, 0, 20);
+    //        PNBulletGO.GetComponent<PNBullet>().dir = PNBulletGO.transform.right;
+    //        PNBPool.Remove(PNBulletGO);
+    //    }
+    //    if (PNBPool.Count > 0)
+    //    {
+    //        GameObject PNBulletGO = PNBPool[0];
 
-            PNBulletGO.SetActive(true);
+    //        PNBulletGO.SetActive(true);
 
-            PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0f, 0);
+    //        PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, 0f, 0);
 
-            PNBPool.Remove(PNBulletGO);
-        }
-        if (PNBPool.Count > 0)
-        {
-            GameObject PNBulletGO = PNBPool[0];
+    //        PNBPool.Remove(PNBulletGO);
+    //    }
+    //    if (PNBPool.Count > 0)
+    //    {
+    //        GameObject PNBulletGO = PNBPool[0];
 
-            PNBulletGO.SetActive(true);
+    //        PNBulletGO.SetActive(true);
 
-            PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, -0.2f, 0);
-            PNBulletGO.transform.rotation = Quaternion.Euler(0, 0, -20);
-            PNBulletGO.GetComponent<PNBullet>().dir = PNBulletGO.transform.right;
-            PNBPool.Remove(PNBulletGO);
-        }
+    //        PNBulletGO.transform.position = PGunPos.transform.position + new Vector3(0, -0.2f, 0);
+    //        PNBulletGO.transform.rotation = Quaternion.Euler(0, 0, -20);
+    //        PNBulletGO.GetComponent<PNBullet>().dir = PNBulletGO.transform.right;
+    //        PNBPool.Remove(PNBulletGO);
+    //    }
 
-    }
+    //}
 }

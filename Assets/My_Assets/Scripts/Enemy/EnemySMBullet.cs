@@ -32,14 +32,14 @@ public class EnemySMBullet : MonoBehaviour
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject == player)
         {
             if (!calledCollision)
             {
                 Debug.Log("이프 맞음");
                 player.GetComponent<PlayerInfo>()._PlayerHp--;
 
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
 
                 calledCollision = true;
             }

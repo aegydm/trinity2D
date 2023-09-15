@@ -14,14 +14,15 @@ public class PNBullet : MonoBehaviour
 
         if (transform.position.x > 11)
         {
+            speed = 10f;
             gameObject.SetActive(false);
         }
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        gameObject.SetActive(false);
-        Debug.Log("총알 비활성화");
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    gameObject.SetActive(false);
+    //    Debug.Log("총알 비활성화");
+    //}
 }

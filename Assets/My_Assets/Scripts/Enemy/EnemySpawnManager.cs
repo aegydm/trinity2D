@@ -2,15 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private int enemySListLength = 20;
     [SerializeField] private GameObject enemyS;
-    List<GameObject> enemySList = new List<GameObject>();
+    public List<GameObject> enemySList = new List<GameObject>();
     [SerializeField] private GameObject enemyToSpawn;
     [SerializeField] private GameObject[] spawnpoints;
     private int ranIndex;
+
+    float reActivateEnemyS;
 
     //private void Start()
     //{
@@ -19,11 +22,15 @@ public class EnemySpawnManager : MonoBehaviour
     //    Stage1();
     //}
 
-
+    private void Start()
+    {
+    }
 
     private void Update()
     {
         ranIndex = UnityEngine.Random.Range(0, spawnpoints.Length);
+
+        reActivateEnemyS += Time.deltaTime;
     }
 
     public void PullingEnemyS()
@@ -41,11 +48,11 @@ public class EnemySpawnManager : MonoBehaviour
 
     private GameObject GetInActivateEnemy(List<GameObject> enemySList)
     {
-        foreach (GameObject enemy in enemySList)
+        foreach (GameObject enemyS in enemySList)
         {
-            if (!enemy.activeSelf)
+            if (!enemyS.activeSelf)
             {
-                return enemy;
+                return enemyS;
             }
         }
         return null;

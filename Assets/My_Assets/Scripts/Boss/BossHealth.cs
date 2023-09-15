@@ -4,34 +4,57 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-    [SerializeField]private int health = 100;
+    [SerializeField] private int health = 100;
     //[SerializeField] private GameObject deathEffect;
-   // [SerializeField] private bool isInvulnerable = false;
+    // [SerializeField] private bool isInvulnerable = false;
     [SerializeField] private Animator animator;
 
+    private float invincibleTimer;
+
+    private GameObject player;
+
+    public int _health {  get { return health; }
+                          set {  health = value; } }
+
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+    }
+    private void Update()
+    {
+        invincibleTimer += Time.deltaTime;
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 6)
+        player.GetComponent<PlayerInfo>()._PlayerHp--;
+
+        if (collision.gameObject.tag == "PlayerBullet")
         {
-            TakeDamage(-10);
-                   
-            Debug.Log("보스 히트");
-            gameObject.transform.position = Vector3.zero;
-            gameObject.transform.rotation = Quaternion.identity;
+            collision.gameObject.SetActive(false);
+            if (invincibleTimer < 1)
+            {
+                TakeDamage(-1);
+
+                Debug.Log("보스 히트");
+                //gameObject.transform.position = Vector3.zero;
+                //gameObject.transform.rotation = Quaternion.identity;
+
+                invincibleTimer = 0;
+            }
         }
     }
 
 
     public void TakeDamage(int damage)
     {
-       /* if (isInvulnerable)
-            return;*/
+        /* if (isInvulnerable)
+             return;*/
         health += damage;
-        if (health <=50) //체력이 절반 이하일떄
+        if (health <= 50) //체력이 절반 이하일떄
         {
-            GetComponent<Animator>().SetBool("BossEnrage",true);
+            GetComponent<Animator>().SetBool("BossEnrage", true);
         }
-        if (health <=0)
+        if (health <= 0)
         {
             Die();
         }
@@ -40,7 +63,7 @@ public class BossHealth : MonoBehaviour
     {
         Debug.Log("보스 격파");
         animator.SetTrigger("BossDead");
-        Invoke("BossGameOver",3);
+        Invoke("BossGameOver", 3);
 
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         //gameObject.SetActive(false);
