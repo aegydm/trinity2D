@@ -41,11 +41,7 @@ public class EnemyS : MonoBehaviour
 
         esstate = ESState.Rush;
 
-        if (player != null)
-        {
-            player = GameObject.Find("Player").transform;
-
-        }
+        player = GameObject.Find("Player").transform;
     }
 
 
