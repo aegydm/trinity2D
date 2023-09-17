@@ -33,7 +33,7 @@ public class BossHealth : MonoBehaviour
             collision.gameObject.SetActive(false);
             if (invincibleTimer < 1)
             {
-                TakeDamage(-1);
+                TakeDamage(-10);
 
                 Debug.Log("보스 히트");
                 //gameObject.transform.position = Vector3.zero;

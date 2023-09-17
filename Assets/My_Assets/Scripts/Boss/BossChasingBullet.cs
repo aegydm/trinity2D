@@ -61,6 +61,8 @@ public class BossChasingBullet : MonoBehaviour
     {
         // 오브젝트가 비활성화될 때 파티클 재생
         PlayParticleEffect();
+        //오브젝트 비활성화시 삭제
+        Destroy(gameObject);
     }
 
     void PlayParticleEffect()
