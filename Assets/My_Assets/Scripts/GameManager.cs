@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("º¸½ºÄÑÁü");
         boss.SetActive(true);
+
         //bossManager.Invoke("Think", 3);
     }
 

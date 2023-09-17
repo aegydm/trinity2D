@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1887051051522454575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6849106516228662665}
+  m_Layer: 7
+  m_Name: GunPos(3)
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6849106516228662665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887051051522454575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2166670167719780120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2968408644189286378
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8343343006144824480}
+  - component: {fileID: 6854851224269577468}
   m_Layer: 7
   m_Name: GunPos
   m_TagString: Untagged
@@ -31,6 +63,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2166670167719780120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6854851224269577468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968408644189286378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc4a3373409bc0469d39375af7734d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  moveDistance: 2
 --- !u!1 &3312310031560987769
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2166670167719780120
 Transform:
   m_ObjectHideFlags: 0
@@ -68,6 +114,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8343343006144824480}
+  - {fileID: 7325846293138921622}
+  - {fileID: 6849106516228662665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7324844634259216741
@@ -98,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b2b694af148dba41b9f204b88648ae5, type: 2}
+  - {fileID: 2100000, guid: 3ef0b7245114dc34ea227856fb53233e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,12 +203,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patternIndex: 0
   curPatternCount: 0
-  maxPatternCount: 05000000050000000500000005000000
+  maxPatternCount: 040000001e00000002000000
   bossbullet: {fileID: 8147279877365712044, guid: d21bdb0149887f545ae46504429813b0,
     type: 3}
+  bossChasingbullet: {fileID: 4781184050219946767, guid: 3bee26eac22bc954ab9f40ed0f9a3026,
+    type: 3}
   gunPos: {fileID: 2968408644189286378}
+  gunPosChasingUp: {fileID: 6903752263727624454}
+  gunPosChasingDown: {fileID: 1887051051522454575}
   degree: 15
   animator: {fileID: 1470576181873106705}
+  indicator: {fileID: 0}
 --- !u!95 &1470576181873106705
 Animator:
   serializedVersion: 5
@@ -223,3 +276,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   animator: {fileID: 1470576181873106705}
+--- !u!1 &6903752263727624454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7325846293138921622}
+  m_Layer: 7
+  m_Name: GunPos(2)
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7325846293138921622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903752263727624454}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2166670167719780120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

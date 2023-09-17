@@ -24,7 +24,7 @@ public class BossBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+   /* private void OnCollisionEnter(Collision collision)
     {
         player.GetComponent<PlayerInfo>()._PlayerHp--;
         //Debug.Log("보스콜리전 맞음");
@@ -33,5 +33,5 @@ public class BossBullet : MonoBehaviour
         //    Debug.Log("보스이프 맞음");
         //    Destroy(gameObject);
         //}
-    }
+    }*/
 }
