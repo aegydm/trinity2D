@@ -108,6 +108,11 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             SetGameState(GameState.gameOver);
         }
+        else 
+        {
+            Time.timeScale = 0;
+            SetGameState(GameState.gameOver);
+        }
     }
 
     //----------------------버튼 입력에 따른 값들---------------------------

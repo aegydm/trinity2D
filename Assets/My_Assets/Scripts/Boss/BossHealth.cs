@@ -9,7 +9,7 @@ public class BossHealth : MonoBehaviour
     // [SerializeField] private bool isInvulnerable = false;
     [SerializeField] private Animator animator;
 
-    private float invincibleTimer;
+    private float invincibleTimer = 0;
 
     private GameObject player;
 
@@ -22,25 +22,33 @@ public class BossHealth : MonoBehaviour
     }
     private void Update()
     {
-        invincibleTimer += Time.deltaTime;
+       // invincibleTimer += Time.deltaTime;
     }
+    /*  private void OnCollisionEnter(Collision collision)
+      {
+          player.GetComponent<PlayerInfo>()._PlayerHp--;
+
+          if (collision.gameObject.tag == "PlayerBullet")
+          {
+              collision.gameObject.SetActive(false);
+              if (invincibleTimer < 1)
+              {
+                  TakeDamage(-10);
+
+                  Debug.Log("보스 히트");
+                  //gameObject.transform.position = Vector3.zero;
+                  //gameObject.transform.rotation = Quaternion.identity;
+
+                  invincibleTimer = 0;
+              }
+          }
+      }*/
     private void OnCollisionEnter(Collision collision)
     {
-        player.GetComponent<PlayerInfo>()._PlayerHp--;
-
         if (collision.gameObject.tag == "PlayerBullet")
         {
-            collision.gameObject.SetActive(false);
-            if (invincibleTimer < 1)
-            {
-                TakeDamage(-10);
 
-                Debug.Log("보스 히트");
-                //gameObject.transform.position = Vector3.zero;
-                //gameObject.transform.rotation = Quaternion.identity;
-
-                invincibleTimer = 0;
-            }
+            TakeDamage(-10);
         }
     }
 
